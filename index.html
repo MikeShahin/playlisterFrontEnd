@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css" media="screen" charset="utf-8">
+    <title>Playlister</title>
+</head>
+<body>
+<h1>Playlister!</h1>
+    <section id="main">
+        <h3>Search for songs to create your own playlist or browse already created playlists</h3>
+        <form id="songSearch">
+            <input type="name" id="playlistName" placeholder="name your playlist">
+            <input type="search" id="artist" placeholder="artist">
+            <input type="search" id="album" placeholder="album">
+        </form>
+        <div id="results"></div>
+
+        <div class="sidebar">
+            <ol id="playlistAdd"></ol>
+            <button id="create">Create Playlist</button>
+        </div>
+
+
+    </section>
+
+    <script src="js/main.js"></script>
+    <script src="js/songSearch.js"></script>
+</body>
+</html>
