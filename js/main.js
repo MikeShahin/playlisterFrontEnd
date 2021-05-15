@@ -60,3 +60,4 @@ let albumView = function(artist, title, preview, index) {
 home.addEventListener('click', (e) => {
     location.reload()
 });
+
