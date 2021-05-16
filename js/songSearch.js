@@ -4,27 +4,7 @@ class Song {
         this.songName = songName;
         this.preview = preview;
     }
-}
-
-searchByAlbum.addEventListener('click', (e) => {
-    e.preventDefault()
-    let playlistName = playlistNameInput.value;
-    artist = artistSearchBox.value;
-    album = albumSearchBox.value;
-    url = corsAnywhere + `https://api.deezer.com/search?q=artist:'${artist}'album:'${album}'`
-
-    songFetch();
-
-    header.innerText = `Add songs to ${playlistName}`;
-    searchByAlbum.innerHTML = "Search"
-
-    while(list.firstChild){
-        list.removeChild(list.firstChild);
-    }
-    
-    seePlaylists.remove();
-    main.appendChild(home)
-});
+};
 
 let songFetch = function() {
     fetch(url) 
