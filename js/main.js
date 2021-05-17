@@ -2,6 +2,7 @@ let main = document.getElementById("main");
 let sidebar = document.querySelector(".sidebar")
 sidebar.classList.add("hidden");
 
+let searchByAlbum = document.getElementById("searchByAlbum");
 let list = document.createElement("ol");
 list.setAttribute("id", "songList");
 
@@ -17,10 +18,11 @@ const searchForm = document.getElementById("songSearch")
 const artistSearchBox = document.getElementById("artist");
 const albumSearchBox = document.getElementById("album");
 const playlistNameInput = document.getElementById("playlistName");
+let playlistName = playlistNameInput.value;
 
-let seePlaylists = document.createElement("button");
-seePlaylists.innerHTML = "See all playlists";
-main.appendChild(seePlaylists);
+// let seePlaylists = document.createElement("button");
+// seePlaylists.innerHTML = "See all playlists";
+// main.appendChild(seePlaylists);
 
 const corsAnywhere = "https://cors-anywhere.herokuapp.com/";
 let artist;
@@ -61,13 +63,12 @@ let backHome = function() {
 
 let albumSearch = function() {
     searchByAlbum.addEventListener('click', (e) => {
-        let playlistName = playlistNameInput.value;
-        let searchByAlbum = document.getElementById("searchByAlbum");
+        
         e.preventDefault()
         artist = artistSearchBox.value;
         album = albumSearchBox.value;
+        playlistName = playlistNameInput.value;
         url = corsAnywhere + `https://api.deezer.com/search?q=artist:'${artist}'album:'${album}'`
-        
         songFetch();
         
         header.innerText = `Add songs to ${playlistName}`;
@@ -77,8 +78,9 @@ let albumSearch = function() {
             list.removeChild(list.firstChild);
         }
         
-        seePlaylists.remove();
-        // home.remove();
+        if (seePlaylists) {
+            seePlaylists.remove();
+        };
         main.appendChild(home)
     });
     backHome();
