@@ -11,12 +11,20 @@ let getSongs = function() {
     })
 }
 
+// let seeSinglePlaylist = function(id) {
+//     fetch(`http://localhost:3000/playlists/${id}`)
+//     .then(res => res.json())
+//     .then(data => {
+//         console.log(data)
+//     })
+// }
+
 let showPlaylists = function() {
     fetch("http://localhost:3000/playlists") 
     .then(res => res.json())
     .then(data => {
         header.innerText = "All Playlists:"
-        console.log(data);
+        console.log(data[data.length - 1]);
         seeAllPlaylists.remove();
         let list = document.createElement("ol");
         main.appendChild(list);
@@ -24,17 +32,22 @@ let showPlaylists = function() {
             let li = document.createElement("li");
             let link = document.createElement("button");
             link.innerText = `${data[i].name}`;
-            link.setAttribute("id", i);
+            link.setAttribute("id", (i + 1));
             li.appendChild(link);
             list.appendChild(li);
 
             link.addEventListener('click', (e) => {
-                fetch("http://localhost:3000/songs") 
+                header.innerText = link.innerText;
+                fetch(`http://localhost:3000/playlists/${link.id}`) 
                 .then(res => res.json())
                 .then(songs => {
-                    console.log(songs.filter((song) => song.playlist_id === link.id))
-                    // console.log(songs[0].artist)
+                    for(let i = 0; i < songs.length; i++) {
+                        albumView(songs[i].artist, songs[i].songName, songs[i].preview, i);
+                    }
                 })
+                while(list.firstChild){
+                    list.removeChild(list.firstChild);
+                }
                 // console.log(link.id)
             })
         }
@@ -67,10 +80,4 @@ let createPlaylist = function(playlistsName) {
             name: playlistsName
         }}),
     })
-}
-
-makePlaylist.addEventListener('click', (e) => {
-    if (playlistName !== "") {
-        createPlaylist(playlistName);
-    }
-})
+};

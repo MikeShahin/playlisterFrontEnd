@@ -29,31 +29,31 @@ let artist;
 let album;
 let url;
 
-let albumView = function(artist, title, preview, index) {
-    let song = document.createElement("span");
-    let li = document.createElement("li");
-    li.innerText = `${artist} - ${title}`;
-    let songPreview = document.createElement("audio");
-    songPreview.setAttribute("src", preview);
-    songPreview.setAttribute("controls", "controls");
-    let addToPlaylist = document.createElement("button");
-    addToPlaylist.setAttribute("id", index)
-    addToPlaylist.classList.add("add");
-    addToPlaylist.innerHTML = "add";
+// let albumView = function(artist, title, preview, index) {
+//     let song = document.createElement("span");
+//     let li = document.createElement("li");
+//     li.innerText = `${artist} - ${title}`;
+//     let songPreview = document.createElement("audio");
+//     songPreview.setAttribute("src", preview);
+//     songPreview.setAttribute("controls", "controls");
+//     let addToPlaylist = document.createElement("button");
+//     addToPlaylist.setAttribute("id", index)
+//     addToPlaylist.classList.add("add");
+//     addToPlaylist.innerHTML = "add";
 
-    li.appendChild(addToPlaylist);
-    song.appendChild(li);
-    song.appendChild(songPreview);
-    list.appendChild(song);
+//     li.appendChild(addToPlaylist);
+//     song.appendChild(li);
+//     song.appendChild(songPreview);
+//     list.appendChild(song);
 
-    addToPlaylist.addEventListener('click', (e) => {
-        let songsToAdd = document.getElementById("playlistAdd");
-        let songs = document.createElement("li");
-        songs.innerText = `${artist} - ${title}`;
-        sidebar.classList.remove("hidden");
-        songsToAdd.appendChild(songs);  
-    })
-};
+//     addToPlaylist.addEventListener('click', (e) => {
+//         let songsToAdd = document.getElementById("playlistAdd");
+//         let songs = document.createElement("li");
+//         songs.innerText = `${artist} - ${title}`;
+//         sidebar.classList.remove("hidden");
+//         songsToAdd.appendChild(songs);  
+//     })
+// };
 
 let backHome = function() {
     home.addEventListener('click', (e) => {
