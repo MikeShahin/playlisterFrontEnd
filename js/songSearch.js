@@ -6,6 +6,7 @@ class Song {
     }
 };
 let allPlaylistSongs = [];
+
 let albumView = function(artist, title, preview, index) {
     let song = document.createElement("span");
     let li = document.createElement("li");
@@ -31,8 +32,6 @@ let albumView = function(artist, title, preview, index) {
         sidebar.classList.remove("hidden");
         songsToAdd.appendChild(artistSong);
         allPlaylistSongs.push(new Song(artist, title, preview))
-        console.log(allPlaylistSongs)
-
     })
 };
 
@@ -43,9 +42,9 @@ let songFetch = function() {
     })
     .then(results => {
         // console.log(results);
-        let searchResults = []
+        // let searchResults = []
         let res = results.data
-        console.log(res);
+        // console.log(res);
 
         let list = document.createElement("ol");
         list.setAttribute("id", "songList");
@@ -54,21 +53,5 @@ let songFetch = function() {
         for(let i = 0; i < res.length; i++) {
             albumView(res[i].artist.name, res[i].title, res[i].preview, i)
         }
-           
-        // for(let i = 0; i < res.length; i++) {
-        //     searchResults.push(new Song(res[i].artist.name, res[i].title_short, res[i].preview))
-        // }
-        // return searchResults   
     })
-    // .then(searchResults => {
-    //     let list = document.createElement("ol");
-    //     list.setAttribute("id", "songList");
-    //     main.appendChild(list);
-
-    //     for(let i = 0; i < searchResults.length; i++) {
-    //         albumView(searchResults[i].artist, searchResults[i].songName, searchResults[i].preview, i)
-    //     }
-    //     // console.log(url)
-    //     console.log(searchResults)
-    // })
 };

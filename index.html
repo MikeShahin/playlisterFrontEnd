@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css" media="screen" charset="utf-8">
-    <title>Playlister</title>
+    <title>Big Jams playlist creator</title>
 </head>
 <body>
-<h1>Playlister!</h1>
+<h1>Big Jams</h1>
     <section id="main">
         <h3>Search for songs to create your own playlist or browse already created playlists</h3>
         <form id="songSearch">
             <input type="name" id="playlistName" placeholder="name your playlist">
             <input type="search" id="artist" placeholder="artist">
             <input type="search" id="album" placeholder="album">
-            <button id="searchByAlbum">Search and create a new playlist</button>
+            <button class="active" id="searchByAlbum">Search and create a new playlist</button>
         </form>
         <br>
         <button id="seePlaylists">See all playlists</button>
@@ -29,9 +29,10 @@
 
     </section>
 
-    <script src="js/main.js"></script>
+    <script src="js/backendApi.js"></script>
     <script src="js/songSearch.js"></script>
     <script src="js/playlist.js"></script>
     <script src="js/songs.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
