@@ -30,17 +30,10 @@ let showPlaylists = function() {
         
         link.addEventListener('click', (e) => {
             header.innerText = link.innerText;
-            fetch(`http://localhost:3000/playlists/${link.id}`) 
-            .then(res => res.json())
-            .then(songs => {
-                for(let i = 0; i < songs.length; i++) {
-                    albumView(songs[i].artist, songs[i].songName, songs[i].preview, i);
-                }
-            })
+            api.showPlayist(link)
             while(list.firstChild){
                 list.removeChild(list.firstChild);
             }
-            // console.log(link.id)
         })
     }
 };

@@ -2,12 +2,11 @@ class BackendApi {
     constructor() {
         this.baseUrl = "http://localhost:3000";
         this.playlistsUrl = this.baseUrl + "/playlists";
-        // this.playlistsShowUrl = this.baseUrl + `/playlists/${link.id}`;
-        this.songsUrl = this.baseUrl + "http://localhost:3000/songs"
+        this.songsUrl = this.baseUrl + "/songs"
     }
 
     getAllPlaylists() {
-        return fetch(this.baseUrl + "/playlists")
+        return fetch(this.playlistsUrl)
         .then(res => res.json())
         .then(data => {
             // console.log(data)
@@ -17,8 +16,18 @@ class BackendApi {
         })
     }
 
+    showPlayist(link) {
+        fetch(this.playlistsUrl + `/${link.id}`) 
+            .then(res => res.json())
+            .then(songs => {
+                for(let i = 0; i < songs.length; i++) {
+                    albumView(songs[i].artist, songs[i].songName, songs[i].preview, i);
+                }
+            })
+    }
+
     createPlaylist(playlistsName) {
-        fetch(this.baseUrl + "/playlists", {
+        fetch(this.playlistsUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +51,7 @@ class BackendApi {
     };
 
     addSongsToPlaylist(artistName, songTitle, songPreview, playlistId) {
-        fetch("http://localhost:3000/songs", {
+        fetch(this.songsUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

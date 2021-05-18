@@ -46,6 +46,8 @@ let albumSearch = function() {
                 header.innerText = `Add songs to ${playlistName}`;
                 api.createPlaylist(playlistName);
                 playlistName = ""
+            } else {
+                break
             }
         }
     });
