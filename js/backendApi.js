@@ -9,19 +9,18 @@ class BackendApi {
         return fetch(this.playlistsUrl)
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
             for(let i = 0; i < data.length; i ++) {
-                new Playlists(data[i].id, data[i].name)
+                new Playlists(data[i].id, data[i].name);
             }
         })
     }
 
     showPlayist(link) {
-        fetch(this.playlistsUrl + `/${link.id}`) 
+        fetch(this.playlistsUrl + `/${link}`) 
             .then(res => res.json())
             .then(songs => {
                 for(let i = 0; i < songs.length; i++) {
-                    albumView(songs[i].artist, songs[i].songName, songs[i].preview, i);
+                    songsView(songs[i].artist, songs[i].songName, songs[i].preview, i);
                 }
             })
     }

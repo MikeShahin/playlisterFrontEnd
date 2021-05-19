@@ -1,80 +1,47 @@
-let main = document.getElementById("main");
-let sidebar = document.querySelector(".sidebar")
-sidebar.classList.add("hidden");
-
-let searchAndCreate = document.querySelector(".active");
-
-let searchByAlbum = document.getElementById("searchByAlbum");
-let list = document.createElement("ol");
-list.setAttribute("id", "songList");
-
-let results = document.getElementById("results")
-results.appendChild(list);
-
-let header = document.querySelector("h3");
-
-let home = document.createElement("button");
-home.innerHTML = "home";
-
-const searchForm = document.getElementById("songSearch")
+//global variables
+const main = document.getElementById("main");
+const seeAllPlaylists = document.getElementById("seePlaylists");
+const api = new BackendApi;
+const sidebar = document.querySelector(".sidebar");
+const searchAndCreate = document.querySelector(".active");
+const searchByAlbum = document.getElementById("searchByAlbum");
+const list = document.createElement("ol");
+const results = document.getElementById("results");
+const header = document.querySelector("h3");
+const home = document.createElement("button");
+const searchForm = document.getElementById("songSearch");
 const artistSearchBox = document.getElementById("artist");
 const albumSearchBox = document.getElementById("album");
 const playlistNameInput = document.getElementById("playlistName");
-let playlistName = playlistNameInput.value;
-
 const corsAnywhere = "https://cors-anywhere.herokuapp.com/";
+let playlistName = playlistNameInput.value;
 let artist;
 let album;
 let url;
 
+sidebar.classList.add("hidden");
+list.setAttribute("id", "songList");
+results.appendChild(list);
+home.innerHTML = "home";
+
+//'helper' functions
 let backHome = function() {
     home.addEventListener('click', (e) => {
-        location.reload()
+        location.reload();
     });
 };
 
-
-let albumSearch = function() {
-    searchAndCreate.addEventListener('click', (e) => {
-        e.preventDefault()
-        playlistName = playlistNameInput.value;
-        while (searchAndCreate.classList == "active") {
-    
-            if (playlistName !== "") {
-                searchAndCreate.classList.remove("active")
-                playlistNameInput.remove();
-                header.innerText = `Add songs to ${playlistName}`;
-                api.createPlaylist(playlistName);
-                playlistName = ""
-            } else {
-                break
-            }
-        }
-    });
-    
-    searchByAlbum.addEventListener('click', (e) => {
-        
-        e.preventDefault()
-
-        artist = artistSearchBox.value;
-        album = albumSearchBox.value;
-        // playlistName = playlistNameInput.value;
-        // api.createPlaylist(playlistName);
-        url = corsAnywhere + `https://api.deezer.com/search?q=artist:'${artist}'album:'${album}'`
-        songFetch();
-        
-        // header.innerText = `Add songs to ${playlistName}`;
-        searchByAlbum.innerHTML = "Search"
-        
-        while(list.firstChild){
-            list.removeChild(list.firstChild);
-        }
-        
-        if (seePlaylists) {
-            seePlaylists.remove();
-        };
-        main.appendChild(home)
-    });
-    backHome();
+let removeElements = function(el) {
+    while(el.firstChild){
+        el.removeChild(el.firstChild);
+    }
 };
-albumSearch();
+
+let removeSearchElements = function(bool) {
+    if (bool === true) {
+        playlistNameInput.remove();
+    } else {
+        searchForm.remove();
+    }
+};
+

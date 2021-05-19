@@ -1,39 +1,34 @@
-class Song {
-    constructor(artist, songName, preview) {
-        this.artist = artist;
-        this.songName = songName;
-        this.preview = preview;
-    }
-};
-
-let allPlaylistSongs = [];
-
-let albumView = function(artist, title, preview, index) {
+let songsView = function(artist, title, preview, index, bool) {
     let song = document.createElement("span");
     let li = document.createElement("li");
     li.innerText = `${artist} - ${title}`;
     let songPreview = document.createElement("audio");
     songPreview.setAttribute("src", preview);
     songPreview.setAttribute("controls", "controls");
-    let addToPlaylist = document.createElement("button");
-    addToPlaylist.setAttribute("id", index)
-    addToPlaylist.classList.add("add");
-    addToPlaylist.innerHTML = "add";
-
-    li.appendChild(addToPlaylist);
     song.appendChild(li);
     song.appendChild(songPreview);
     list.appendChild(song);
+    
+    if (bool === true) {
+        let addToPlaylist = document.createElement("button");
+        addToPlaylist.setAttribute("id", index)
+        addToPlaylist.classList.add("add");
+        addToPlaylist.innerHTML = "add";
+    
+        li.appendChild(addToPlaylist);
 
-    addToPlaylist.addEventListener('click', (e) => {
-        let songsToAdd = document.getElementById("playlistAdd");
-        let artistSong = document.createElement("li");
-        
-        artistSong.innerText = `${artist} - ${title}`;
-        sidebar.classList.remove("hidden");
-        songsToAdd.appendChild(artistSong);
-        allPlaylistSongs.push(new Song(artist, title, preview))
-    })
+        addToPlaylist.addEventListener('click', (e) => {
+            let songsToAdd = document.getElementById("playlistAdd");
+            let artistSong = document.createElement("li");
+            
+            artistSong.innerText = `${artist} - ${title}`;
+            sidebar.classList.remove("hidden");
+            songsToAdd.appendChild(artistSong);
+            // allPlaylistSongs.push(new Song(artist, title, preview))
+            let x = document.getElementById("playlistId");
+            api.addSongsToPlaylist(artist, title, preview, x.value)
+        })
+    }
 };
 
 let songFetch = function() {
@@ -46,25 +41,48 @@ let songFetch = function() {
         // let searchResults = []
         let res = results.data
         // console.log(res);
-
-        let list = document.createElement("ol");
-        list.setAttribute("id", "songList");
-        main.appendChild(list);
-
-        for(let i = 0; i < res.length; i++) {
-            albumView(res[i].artist.name, res[i].title, res[i].preview, i)
+        if (playlistName !== "") {
+            for(let i = 0; i < res.length; i++) {
+                songsView(res[i].artist.name, res[i].title, res[i].preview, i, true)
+            }
+        } else {
+            header.innerText = "Just browsing, go back and eneter a playlist name with your search to create a new list"
+            for(let i = 0; i < res.length; i++) {
+                songsView(res[i].artist.name, res[i].title, res[i].preview, i)
+            }        
         }
     })
 };
 
-const makePlaylist = document.getElementById("createPlaylist");
-makePlaylist.addEventListener('click', (e) => {
-    console.log('hit')
-    // createPlaylist(playlistName);
-    let x = document.getElementById("playlistId");
-
-    for (let i = 0; i < allPlaylistSongs.length; i++) {
-        api.addSongsToPlaylist(allPlaylistSongs[i].artist, allPlaylistSongs[i].songName, allPlaylistSongs[i].preview, x.value);
+let albumSearch = function() {
+    searchAndCreate.addEventListener('click', (e) => {
+        e.preventDefault()
+        playlistName = playlistNameInput.value;
+        while (searchAndCreate.classList == "active") {
+            if (playlistName !== "") {
+                searchAndCreate.classList.remove("active")
+                removeSearchElements(true);
+                header.innerText = `Add songs to ${playlistName}`;
+                api.createPlaylist(playlistName);
+            } else {
+                removeSearchElements()
+                break
+            }
         }
-        // location.reload() 
-});
+    });
+    searchByAlbum.addEventListener('click', (e) => {  
+        e.preventDefault()
+        artist = artistSearchBox.value;
+        album = albumSearchBox.value;
+        url = corsAnywhere + `https://api.deezer.com/search?q=artist:'${artist}'album:'${album}'`
+        songFetch();
+        searchByAlbum.innerHTML = "Search"     
+        removeElements(list)
+        if (seePlaylists) {
+            seePlaylists.remove();
+        };
+        main.appendChild(home)
+    });
+    backHome();
+};
+albumSearch();
