@@ -61,8 +61,7 @@ let albumSearch = function() {
         while (searchAndCreate.classList == "active") {
             if (playlistName !== "") {
                 searchAndCreate.classList.remove("active")
-                removeSearchElements(true);
-                header.innerText = `Add songs to ${playlistName}`;
+                // header.innerText = `Add songs to ${playlistName}`;
                 api.createPlaylist(playlistName);
             } else {
                 removeSearchElements()
@@ -75,13 +74,22 @@ let albumSearch = function() {
         artist = artistSearchBox.value;
         album = albumSearchBox.value;
         url = corsAnywhere + `https://api.deezer.com/search?q=artist:'${artist}'album:'${album}'`
-        songFetch();
-        searchByAlbum.innerHTML = "Search"     
-        removeElements(list)
-        if (seePlaylists) {
-            seePlaylists.remove();
-        };
-        main.appendChild(home)
+        let pl = Playlists.allPlaylists;
+        if (pl.some(playlist => playlist.name === playlistName)) {
+            removeSearchElements();
+            header.innerText = "exists, go back home and try again"
+        } else {
+            
+            songFetch();
+            header.innerText = `Add songs to ${playlistName}`;
+            searchByAlbum.innerHTML = "Search"     
+            removeElements(list);
+            removeSearchElements(true);
+            if (seePlaylists) {
+                seePlaylists.remove();
+            };
+            main.appendChild(home)
+        }
     });
     backHome();
 };

@@ -15,7 +15,7 @@ class Playlists {
 
 let searchPl = function() {
     let input = document.getElementById("plSearch");
-    let filter = input.value.toLowerCase();
+    let search = input.value.toLowerCase();
     let ul = document.querySelector(".playlists");
     let li = ul.getElementsByTagName('li');
     let a;
@@ -25,7 +25,7 @@ let searchPl = function() {
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
-        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+        if (txtValue.toLowerCase().indexOf(search) > -1) {
           li[i].style.display = "";
         } else {
           li[i].style.display = "none";
