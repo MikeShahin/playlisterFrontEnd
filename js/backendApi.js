@@ -3,7 +3,7 @@ class BackendApi {
         this.baseUrl = "http://localhost:3000";
         this.playlistsUrl = this.baseUrl + "/playlists";
         this.songsUrl = this.baseUrl + "/songs"
-    }
+    };
 
     getAllPlaylists() {
         return fetch(this.playlistsUrl)
@@ -13,7 +13,7 @@ class BackendApi {
                 new Playlists(data[i].id, data[i].name);
             }
         })
-    }
+    };
 
     showPlayist(link) {
         fetch(this.playlistsUrl + `/${link}`) 
@@ -23,7 +23,7 @@ class BackendApi {
                     songsView(songs[i].artist, songs[i].songName, songs[i].preview, i);
                 }
             })
-    }
+    };
 
     createPlaylist(playlistsName) {
         fetch(this.playlistsUrl, {
@@ -40,12 +40,11 @@ class BackendApi {
             return res.json()
         })
         .then(data => {
-            // console.log(data.playlist.id)
             let id = document.createElement("input");
             id.setAttribute("type", "hidden");
-            id.setAttribute("id", "playlistId")
+            id.setAttribute("id", "playlistId");
             id.setAttribute("value", data.playlist.id);
-            main.appendChild(id)
+            main.appendChild(id);
         })
     };
 
@@ -63,10 +62,7 @@ class BackendApi {
             }}),
         })
         .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            console.log("success added")
+            return res.json();
         })
         .catch(error => {
             console.log(error)

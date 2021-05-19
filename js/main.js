@@ -1,5 +1,6 @@
 //global variables
 const main = document.getElementById("main");
+const logo = document.querySelector("h1");
 const seeAllPlaylists = document.getElementById("seePlaylists");
 const api = new BackendApi;
 const sidebar = document.querySelector(".sidebar");
@@ -27,6 +28,9 @@ home.innerHTML = "home";
 //'helper' functions
 let backHome = function() {
     home.addEventListener('click', (e) => {
+        location.reload();
+    });
+    logo.addEventListener('click', (e) => {
         location.reload();
     });
 };
