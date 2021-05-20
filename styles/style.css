@@ -1,10 +1,53 @@
-h1 {
+.logo {
   cursor: crosshair;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-align:center;
+}
+
+h3 {
+  text-align:center;
+}
+
+
+#songSearch {
+  margin-left:500px;
+  margin-right:auto;
+  /* width:1000px; */
+}
+
+#playlistSearch {
+  margin-left:auto;
+  margin-right:auto;
+  width:1000px;
+  border-color: black;
+}
+
+#seePlaylists {
+  margin: 0 auto;
+  display: block;
+}
+
+#createPlaylist {
+  margin-left: 40px;
+}
+
+#songList {
+  /* margin-left: 100px; */
+  padding-left: 200px;
+  font-size: 17pt;
+}
+
+body {
+  background-color: rgb(85, 189, 189);
 }
 
 .sidebar {
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
+    width: 290px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -19,23 +62,76 @@ h1 {
 }
 
 .playlists {
-  /* Remove default list styling */
   list-style-type: none;
-  padding: 0;
-  margin: 0;
+  text-align:center;
+  /* margin: 0; */
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
 
+.results {
+
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+span {
+  display: inline
+}
 .playlists li a {
-  border: 1px solid #ddd; /* Add a border to all links */
+  border: 1px solid rgb(37, 24, 24); /* Add a border to all links */
   margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6; /* Grey background color */
+  background-color: rgb(83, 153, 153); /* Grey background color */
   padding: 12px; /* Add some padding */
   text-decoration: none; /* Remove default text underline */
   font-size: 18px; /* Increase the font-size */
   color: black; /* Add a black text color */
-  display: block; /* Make it into a block element to fill the whole list */
+  width:100%;
+  display: inline-block;
 }
 
 .playlists li a:hover:not(.header) {
-  background-color: #eee; /* Add a hover effect to all links, except for headers */
+  background-color: rgb(72, 114, 114);; /* Add a hover effect to all links, except for headers */
+}
+
+#songList button {
+  background-image: url(assets/add.png);
+  background-size:contain;
+  background-color: rgb(85, 189, 189);
+  border-style: none;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  /* font-size: 2rem; */
+}
+
+audio:hover, audio:focus, audio:active
+{
+  -webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  -moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+
+audio
+{  
+  margin-right: 20px;
+  width: 200px;
+  height: 20px;
+  -webkit-transition:all 0.5s linear;
+  -moz-transition:all 0.5s linear;
+  -o-transition:all 0.5s linear;
+  transition:all 0.5s linear;
+  -moz-box-shadow: 2px 2px 4px 0px #006773;
+  -webkit-box-shadow:  2px 2px 4px 0px #006773;
+  box-shadow: 2px 2px 4px 0px #006773;
+  -moz-border-radius:7px 7px 7px 7px ;
+  -webkit-border-radius:7px 7px 7px 7px ;
+  border-radius:7px 7px 7px 7px ;
 }

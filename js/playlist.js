@@ -36,7 +36,7 @@ let searchPl = function() {
 let playlistSearch = function() {
     playlistSearchForm.setAttribute("id", "playlistSearch");
     plSearchBar.setAttribute("type", "search");
-    plSearchBar.setAttribute("placeholder", "search playlists");
+    plSearchBar.setAttribute("placeholder", "search playlists")
     plSearchBar.setAttribute("id", "plSearch")
     plSearchButton.innerText = "search";
     plSearchButton.setAttribute("id", "playlistSearchSubmit");
@@ -96,6 +96,5 @@ seeAllPlaylists.addEventListener('click', (e) => {
     removeSearchElements();
     removeElements(list);
     showPlaylists();
-    main.appendChild(home);
     backHome();
 });

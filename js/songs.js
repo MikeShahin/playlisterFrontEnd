@@ -6,16 +6,14 @@ let songsView = function(artist, title, preview, index, bool) {
     songPreview.setAttribute("src", preview);
     songPreview.setAttribute("controls", "controls");
     song.appendChild(li);
-    song.appendChild(songPreview);
     list.appendChild(song);
     
     if (bool === true) {
         let addToPlaylist = document.createElement("button");
         addToPlaylist.setAttribute("id", index)
         addToPlaylist.classList.add("add");
-        addToPlaylist.innerHTML = "add";
-    
-        li.appendChild(addToPlaylist);
+        // addToPlaylist.innerHTML = "add";
+        li.prepend(addToPlaylist);
 
         addToPlaylist.addEventListener('click', (e) => {
             let songsToAdd = document.getElementById("playlistAdd");
@@ -29,6 +27,7 @@ let songsView = function(artist, title, preview, index, bool) {
             api.addSongsToPlaylist(artist, title, preview, x.value)
         })
     }
+    li.prepend(songPreview);
 };
 
 let songFetch = function() {
@@ -77,7 +76,7 @@ let albumSearch = function() {
         let pl = Playlists.allPlaylists;
         if (pl.some(playlist => playlist.name === playlistName)) {
             removeSearchElements();
-            header.innerText = "exists, go back home and try again"
+            header.innerText = "exists, go back home and try again or:"
         } else {
             
             songFetch();

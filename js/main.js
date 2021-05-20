@@ -1,6 +1,6 @@
 //global variables
 const main = document.getElementById("main");
-const logo = document.querySelector("h1");
+const logo = document.querySelector(".logo");
 const seeAllPlaylists = document.getElementById("seePlaylists");
 const api = new BackendApi;
 const sidebar = document.querySelector(".sidebar");
@@ -9,7 +9,6 @@ const searchByAlbum = document.getElementById("searchByAlbum");
 const list = document.createElement("ol");
 const results = document.getElementById("results");
 const header = document.querySelector("h3");
-const home = document.createElement("button");
 const searchForm = document.getElementById("songSearch");
 const artistSearchBox = document.getElementById("artist");
 const albumSearchBox = document.getElementById("album");
@@ -23,13 +22,9 @@ let url;
 sidebar.classList.add("hidden");
 list.setAttribute("id", "songList");
 results.appendChild(list);
-home.innerHTML = "home";
 
 //'helper' functions
 let backHome = function() {
-    home.addEventListener('click', (e) => {
-        location.reload();
-    });
     logo.addEventListener('click', (e) => {
         location.reload();
     });
