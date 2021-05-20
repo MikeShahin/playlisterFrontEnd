@@ -42,7 +42,7 @@ let playlistSearch = function() {
     plSearchButton.setAttribute("id", "playlistSearchSubmit");
     playlistSearchForm.appendChild(plSearchBar);
     playlistSearchForm.appendChild(plSearchButton);
-    main.prepend(playlistSearchForm);
+    messageDiv.appendChild(playlistSearchForm);
 
     plSearchButton.addEventListener("click", (e) => {
         e.preventDefault();

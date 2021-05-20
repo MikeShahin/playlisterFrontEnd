@@ -13,6 +13,7 @@ const searchForm = document.getElementById("songSearch");
 const artistSearchBox = document.getElementById("artist");
 const albumSearchBox = document.getElementById("album");
 const playlistNameInput = document.getElementById("playlistName");
+const messageDiv = document.querySelector(".messages")
 const corsAnywhere = "https://cors-anywhere.herokuapp.com/";
 let playlistName = playlistNameInput.value;
 let artist;
