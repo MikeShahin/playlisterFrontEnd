@@ -12,17 +12,14 @@ let songsView = function(artist, title, preview, index, bool) {
         let addToPlaylist = document.createElement("button");
         addToPlaylist.setAttribute("id", index)
         addToPlaylist.classList.add("add");
-        // addToPlaylist.innerHTML = "add";
         li.prepend(addToPlaylist);
 
         addToPlaylist.addEventListener('click', (e) => {
             let songsToAdd = document.getElementById("playlistAdd");
             let artistSong = document.createElement("li");
-            
             artistSong.innerText = `${artist} - ${title}`;
             sidebar.classList.remove("hidden");
             songsToAdd.appendChild(artistSong);
-            // allPlaylistSongs.push(new Song(artist, title, preview))
             let x = document.getElementById("playlistId");
             api.addSongsToPlaylist(artist, title, preview, x.value)
         })
@@ -36,10 +33,7 @@ let songFetch = function() {
         return response.json();
     })
     .then(results => {
-        // console.log(results);
-        // let searchResults = []
         let res = results.data
-        // console.log(res);
         if (playlistName !== "") {
             for(let i = 0; i < res.length; i++) {
                 songsView(res[i].artist.name, res[i].title, res[i].preview, i, true)
@@ -60,7 +54,6 @@ let albumSearch = function() {
         while (searchAndCreate.classList == "active") {
             if (playlistName !== "") {
                 searchAndCreate.classList.remove("active")
-                // header.innerText = `Add songs to ${playlistName}`;
                 api.createPlaylist(playlistName);
             } else {
                 removeSearchElements()
@@ -78,7 +71,6 @@ let albumSearch = function() {
             removeSearchElements();
             header.innerText = "Someones already created this playlist, choose a new name."
         } else {
-            
             songFetch();
             header.innerText = `Add songs to ${playlistName}`;
             searchByAlbum.innerHTML = "Search"     
