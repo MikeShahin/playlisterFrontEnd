@@ -45,7 +45,7 @@ let songFetch = function() {
                 songsView(res[i].artist.name, res[i].title, res[i].preview, i, true)
             }
         } else {
-            header.innerText = "Just browsing, go back and eneter a playlist name with your search to create a new list"
+            header.innerText = "Just browsing, go back by clicking on the logo at the top and enter a playlist name with your search to create a new list"
             for(let i = 0; i < res.length; i++) {
                 songsView(res[i].artist.name, res[i].title, res[i].preview, i)
             }        
@@ -76,7 +76,7 @@ let albumSearch = function() {
         let pl = Playlists.allPlaylists;
         if (pl.some(playlist => playlist.name === playlistName)) {
             removeSearchElements();
-            header.innerText = "exists, go back home and try again or:"
+            header.innerText = "Someones already created this playlist, choose a new name."
         } else {
             
             songFetch();

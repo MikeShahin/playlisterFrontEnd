@@ -12,7 +12,6 @@ h3 {
   text-align:center;
 }
 
-
 #songSearch {
   text-align:center;
 }
@@ -111,7 +110,6 @@ audio:hover, audio:focus, audio:active
   -moz-transform: scale(1.05);
   transform: scale(1.05);
 }
-
 
 audio
 {  

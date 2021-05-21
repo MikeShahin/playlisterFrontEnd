@@ -21,6 +21,7 @@ let searchPl = function() {
     let a;
     let i;
     let txtValue;
+    header.innerText = `Playlists including '${search}'`
 
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
@@ -30,7 +31,7 @@ let searchPl = function() {
         } else {
           li[i].style.display = "none";
         }
-      }
+    }
 }
 
 let playlistSearch = function() {
@@ -47,7 +48,6 @@ let playlistSearch = function() {
     plSearchButton.addEventListener("click", (e) => {
         e.preventDefault();
         searchPl();
-        console.log("hit")
     })
 };
 
@@ -55,14 +55,13 @@ let showPlaylists = function() {
     let list = document.createElement("ol");
     let data = Playlists.allPlaylists;    
     main.appendChild(list);
-    header.innerText = "All Playlists:";
+    header.innerText = `Found ${data.length} playlist(s)!`;
     seeAllPlaylists.remove();
-    playlistSearch();
   
     for(let i = 0; i < data.length; i++) {
         let li = document.createElement("li");
         let link = document.createElement("a");
-        list.classList.add("playlists")
+        list.classList.add("playlists");
         link.innerText = `${data[i].name}`;
         link.setAttribute("id", (i + 1));
         li.appendChild(link);
@@ -96,5 +95,6 @@ seeAllPlaylists.addEventListener('click', (e) => {
     removeSearchElements();
     removeElements(list);
     showPlaylists();
+    playlistSearch();
     backHome();
 });
