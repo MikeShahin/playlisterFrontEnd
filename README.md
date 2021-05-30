@@ -10,7 +10,9 @@ Big Jams lets you search for songs and create playlists
 
 2. in the backend folder, open a command prompt and type rails s to start the database server.
 
-3. open index.html file in your prefered browser and get jammin!
+3. Navigate to https://cors-anywhere.herokuapp.com/corsdemo and request temporary access.
+
+4. open index.html file in your prefered browser and get jammin!
 
 ## Usage/features
 
